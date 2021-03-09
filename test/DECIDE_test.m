@@ -44,3 +44,18 @@ PARAMETERS.EPSILON = pi - 0.01;
 
 out = lic2(POINTS, NUMPOINTS, PARAMETERS);
 assert(out == 0)
+
+%% Test 4: LIC 4 number of quadrants check
+
+% Test intention: check that the output is 1 if Q_PTS consequtive points
+% lie in more than QUADS quadrants
+
+PARAMETERS.Q_PTS = 3;
+PARAMETERS.QUADS = 2;
+
+% Test oracle: The Q_PTS consecutive points 4, 5, 6 lie in the second, fourth and first
+% quadrant, respectively. Hence, they lie in more than QUADS = 2 quadrants, 
+% and so we expect LIC 4 to output true (1)
+
+out = lic4(POINTS, NUMPOINTS, PARAMETERS);
+assert(out == 1)

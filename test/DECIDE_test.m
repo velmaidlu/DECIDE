@@ -59,3 +59,21 @@ PARAMETERS.QUADS = 2;
 
 out = lic4(POINTS, NUMPOINTS, PARAMETERS);
 assert(out == 1)
+
+%% Test 6.1: LIC 6 distance from line check - normal case
+
+% Test intention: check that the output is 1 if at least one of the mid +
+% end N_PTS points end up outside of a line
+
+POINTS = [1 0; 2 5; 3 0];
+NUMPOINTS = 3;
+PARAMETERS.N_PTS = 3;
+PARAMETERS.DIST = 2;
+
+% Test oracle: The second point (2, 5) is 5 units > 2 units = DIST away
+% from the line between (1, 0) and (3, 0), and so we expect LIC 6 to output
+% true (1)
+
+out = lic6(POINTS, NUMPOINTS, PARAMETERS);
+assert(out == 1);
+

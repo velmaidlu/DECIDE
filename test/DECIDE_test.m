@@ -92,6 +92,18 @@ PARAMETERS.QUADS = 2;
 out = lic4(POINTS, NUMPOINTS, PARAMETERS);
 assert(out == 1)
 
+%% TEST 5: LIC 5 X[j] - X[i] < 0 (where i=j-1)
+
+% Test intension : check that the output is 1 if we have (more than) one 
+% set of 2 consecutive points that the x cordinate of the second of is
+% smaller than the first one
+
+% Test Oracle : the x cordinate of 2nd point is greater than point 3rd, 3rd than 4th 
+% 6th than 7th, 7th than 8th. so the condition of the lic5 is met and 
+% the expected output should be out=1;
+out=lic5(POINTS,NUMPOINTS);
+assert(out==1)
+
 %% Test 6.1: LIC 6 distance from line check - normal case
 
 % Test intention: check that the output is 1 if at least one of the mid +

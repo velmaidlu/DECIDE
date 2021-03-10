@@ -219,3 +219,16 @@ if( NUMPOINTS>= 5)
 end
 
 end
+
+%% LIC 11
+function out = lic11(POINTS,NUMPOINTS,G_PTS)
+out=0;
+if (NUMPOINTS>=3)
+    for i= 1: (NUMPOINTS-1-G_PTS)
+        if ( POINTS(i,1)> POINTS(i+1+G_PTS,1) )
+            out=1;
+        end
+    end
+    
+end
+end

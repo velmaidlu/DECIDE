@@ -248,6 +248,28 @@ PARAMETERS.G_PTS= 9 ;
 out=lic11(POINTS,NUMPOINTS,PARAMETERS.G_PTS);
 assert(out==0)
 
+%% Test 12: LIC 12 two points separated by intervening points distance check
+
+% Test intention: check that the output is 1 if there exist 2 points
+% separate by K_PTS intervening points which have a distance greater than
+% LENGTH1 and indepently if there exist 2 points satisfying the same
+% condition which instead have a distance less than LENGTH2
+
+POINTS = [1 0; -3 0; 1 0; 0 5; 9 0; -1 0];
+NUMPOINTS = 6;
+PARAMETERS.K_PTS = 3;
+PARAMETERS.LENGTH1 = 6;
+PARAMETERS.LENGTH2 = 4;
+
+% Test oracle: The first and the fifth point are 8 units apart > 6 = LENGTH1
+% and hence satisfy the first distance criterion (but no the second).
+% The second and sixth point are 2 units apart < 4 = LENGTH2 and thus 
+% satisfy the second distance criterion (but not the first).
+% We thus expect LIC 12 to output true (1)
+
+out = lic12(POINTS, NUMPOINTS, PARAMETERS);
+assert(out == 1);
+
 %% TEST 13.1 : LIC 13, check a set of 3 points that can not be contained within a circle of RADIUS1+ a set of 3 points that CAN be contained within a circle of RADIUS2
 
 % Test intension : check that the output is 1 when we can find (at least)

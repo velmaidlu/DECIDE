@@ -15,6 +15,23 @@ PARAMETERS.LENGTH1 = 10;
 out = lic0(POINTS, NUMPOINTS, PARAMETERS);
 assert(out == 1)
 
+%% Test 1: LIC 1 not contained within a circle 
+
+% Test intention : if we plot the first 3 points it is obvious that they 
+% can be contained within a circle of the raduis smaller than ~7 (the circumradius of the traingle made by the first 3 points is ~7)
+%so obviously they can not be contained within or on a circle of the radius= 5, so we expect
+%the LIC 1 would be met with these inputs.
+
+PARAMETERS.RADIUS1=5;
+
+%Test Oracle : we are sure that there exists at least one set ( the first 3
+%points) of 3 consecutive data point in POINTS that can not be
+%contained within or on a circle of the radius=5, so LIC1 should be met and
+%the output of the lic1 should be out=1;
+
+out = lic1(POINTS, NUMPOINTS, PARAMETERS.RADIUS1);
+assert(out == 1)
+
 %% Test 2.1: LIC 2 angle check
 
 % Test intention: check that the output is 1 if the 0 <= angle <= pi is less than pi -

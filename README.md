@@ -10,7 +10,11 @@ How to use DECIDE.m:
 ---------------------------------
 
 Simply type DECIDE in the matlab command window. In order for the
-script to run, some input variables must be defined in the workspace.
+script to run, All the input variables must be defined in the workspace as specified below.
+
+(since it is not possible to have void DECIDE() function in MATLAB changing the global variables as inputs and outputs,
+  we decided to have a script of DECIDE.m that should be run on a workspace including Inputs) 
+
 
 Inputs:
 ---------------------------------

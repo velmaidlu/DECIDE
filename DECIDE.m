@@ -29,7 +29,22 @@ CMV(13)= lic12(POINTS, NUMPOINTS, PARAMETERS);
 CMV(14)= lic13(POINTS,NUMPOINTS,PARAMETERS.A_PTS,PARAMETERS.B_PTS,PARAMETERS.RADIUS1,PARAMETERS.RADIUS2);
 CMV(15)= lic14(POINTS, NUMPOINTS, PARAMETERS);
 
-
+%% form PUM by combining LCM and CMV 
+for i=1:15 
+    for j=1:15
+        if(LCM(i,j) == 3) % NOTUSED
+            PUM(i,j)=1;
+        elseif(LCM(i,j) == 1) %AND
+            if(CMV(i) ==1 && CMV(j) ==1)
+                PUM(i,j)=1;
+            end
+        else % OR 
+            if ( CMV(i)==1 || CMV(j)==1)
+                PUM(i,j)=1;
+            end
+        end
+    end
+end
 
 %% LIC 0
 function out = lic0(POINTS, NUMPOINTS, PARAMETERS)

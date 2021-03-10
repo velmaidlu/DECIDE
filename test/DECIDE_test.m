@@ -77,3 +77,19 @@ PARAMETERS.DIST = 2;
 out = lic6(POINTS, NUMPOINTS, PARAMETERS);
 assert(out == 1);
 
+%% Test 6.2: LIC 6 first and last points identical check
+
+% Test intention: check that the output is 1 if at least one of the mid +
+% end N_PTS points end up outside a circle of radius DIST around the
+% start = end point (by assumption)
+
+POINTS = [1 0; 5 0; 1 0];
+NUMPOINTS = 3;
+PARAMETERS.N_PTS = 3;
+PARAMETERS.DIST = 2;
+
+% Test oracle: The second point (5, 0) is 4 units > 2 units = DIST away
+% from the start = end point at (1, 0), and so we expect LIC 6 to output true (1)
+
+out = lic6(POINTS, NUMPOINTS, PARAMETERS);
+assert(out == 1);

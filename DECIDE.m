@@ -96,7 +96,6 @@ end
 %% LIC 2
 function out = lic2(POINTS, NUMPOINTS, PARAMETERS)
 out = 0;
-PI = PARAMETERS.PI;
 epsilon = PARAMETERS.EPSILON;
     for i = 1:(NUMPOINTS - 2)
         v1 = POINTS(i, :) - POINTS(i + 1, :);
@@ -105,7 +104,7 @@ epsilon = PARAMETERS.EPSILON;
             
         else
             angle = abs(acos(dot(v1, v2) / (norm(v1) * norm(v2)))); % 0 <= Angle <= pi, so only one condition is enough
-            if angle < (PI - epsilon)
+            if angle < (pi - epsilon)
                 out = 1;
             end
         end

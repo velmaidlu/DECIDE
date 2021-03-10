@@ -93,3 +93,22 @@ PARAMETERS.DIST = 2;
 
 out = lic6(POINTS, NUMPOINTS, PARAMETERS);
 assert(out == 1);
+
+%% Test 8: LIC 8 three data point separated by intervening points not contained within circle check
+
+% Test intention: check that the output is 1 if at least one of the three
+% data points separated by A_PTS and B_PTS consecutive intervening points,
+% respectively, ends up outside a circle of radius RADIUS1
+
+POINTS = [1 0; -3 0; 1 0; 5 0; 0 -4; -1 1];
+NUMPOINTS = 6;
+PARAMETERS.A_PTS = 2;
+PARAMETERS.B_PTS = 1;
+PARAMETERS.RADIUS1 = 4.5;
+
+% Test oracle: The fourth point (5, 0) (A_PTS away from the first and B_PTS away from the last) 
+% is 5 units away from the origin. Hence it lies outside a circle of radius 4.5, and so we expect LIC 8 to output true (1) 
+
+out = lic8(POINTS, NUMPOINTS, PARAMETERS);
+assert(out == 1);
+

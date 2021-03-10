@@ -1,10 +1,10 @@
 
-%% Inputs 
-PARAMETERS= struct('LENGTH1',1,'RADIUS1',1,'EPSILON',1,'AREA1',1,'Q_PTS',1,'QUADS',1,'DIST',1,'N_PTS',1,'K_PTS',1,'A_PTS',1,'B_PTS',1,'C_PTS',1,'D_PTS',1,'E_PTS',1,'F_PTS',1,'G_PTS',1,'LENGTH2',1,'RADIUS2',1,'AREA2',1);
-NUMPOINTS= 100;
-POINTS = zeros(NUMPOINTS,2);
-PUV = zeros(15,1);
-LCM= randi(3,15); %% 1= ANDD , 2=ORR , 3=NOTUSED
+%%% Inputs 
+%PARAMETERS= struct('LENGTH1',1,'RADIUS1',1,'EPSILON',1,'AREA1',1,'Q_PTS',1,'QUADS',1,'DIST',1,'N_PTS',1,'K_PTS',1,'A_PTS',1,'B_PTS',1,'C_PTS',1,'D_PTS',1,'E_PTS',1,'F_PTS',1,'G_PTS',1,'LENGTH2',1,'RADIUS2',1,'AREA2',1);
+%NUMPOINTS= 100;
+%POINTS = zeros(NUMPOINTS,2);
+%PUV = zeros(15,1); False = 0 , True= 1
+%LCM= randi(3,15); %% 1= ANDD , 2=ORR , 3=NOTUSED
 
 %% OUTPUT 
 LAUNCH =0;

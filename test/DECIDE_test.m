@@ -62,6 +62,21 @@ PARAMETERS.EPSILON = pi - 0.01;
 out = lic2(POINTS, NUMPOINTS, PARAMETERS);
 assert(out == 0)
 
+%% Test 3: LIC 3 Area of the traingle > AREA1   
+
+% Test intention : check that if the output of the lic3 is 0
+% when all the points are close to each other such that the area
+% of the triangle made by 3 consecutive points could not be greater
+% than AREA1
+POINTS= [0 0 ; 1 1; 1 0 ; 0 1; 0.5 0.5; 1 0.5 ; 0.5 1 ; 0 0.5; 0.5 0; 0.25 0.25];
+PARAMETERS.AREA1= 1;
+
+% Test Oracle : the points are all within a squre of the area=1,
+% so we expect the LIC 3 would not be met and its output : out=0;
+
+out=lic3(POINTS,NUMPOINTS,PARAMETERS.AREA1);
+assert(out == 0)
+
 %% Test 4: LIC 4 number of quadrants check
 
 % Test intention: check that the output is 1 if Q_PTS consequtive points

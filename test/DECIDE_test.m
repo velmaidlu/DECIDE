@@ -202,3 +202,18 @@ PARAMETERS.D_PTS=2;
 % should be 0
 out=lic9(POINTS,NUMPOINTS,PARAMETERS.C_PTS,PARAMETERS.D_PTS,PARAMETERS.EPSILON);
 assert(out == 0)
+
+%% TEST 11.1: LIC 11 X[j] - X[i] < 0 (where i=j-1) for non-consecutive points
+
+%Test intension: check that the output is 1 if there exists a set of 2 points 
+% seperated by G_PTS such that the x-cordinate of the first point is greater
+% than the second one's
+
+PARAMETERS.G_PTS = 1;
+
+%Test Oracle : point 1 and 3 are G_PTS seperated of each other and x of point 1 is greater than x of point 3
+% so the condition of the LIC11 is satisfied by this set of points and the
+% expected output should be out=1
+
+out=lic11(POINTS,NUMPOINTS,PARAMETERS.G_PTS);
+assert(out==1)

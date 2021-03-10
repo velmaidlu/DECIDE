@@ -217,3 +217,15 @@ PARAMETERS.G_PTS = 1;
 
 out=lic11(POINTS,NUMPOINTS,PARAMETERS.G_PTS);
 assert(out==1)
+
+%% TEST 11.2 : 
+
+%Test intension: check that the output is 0 if all the set of points 
+%seperated by G_PTS are such that the x-cordinate of the fist point is
+%less than the second point's
+PARAMETERS.G_PTS= 9 ;
+% Test Oracle: with this G_PTS there is only one set of data points G_PTS
+% points apart which is point 1 and 10 where the x of point 1 is less than
+% the x of the point 10 1<3. so the expected output  should be 0
+out=lic11(POINTS,NUMPOINTS,PARAMETERS.G_PTS);
+assert(out==0)

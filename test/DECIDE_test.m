@@ -267,3 +267,22 @@ PARAMETERS.B_PTS =1;
 
 out=lic13(POINTS,NUMPOINTS,PARAMETERS.A_PTS,PARAMETERS.B_PTS,PARAMETERS.RADIUS1,PARAMETERS.RADIUS2);
 assert(out==1)
+
+%% Test 13.2 : LIC 13 
+
+% Test intension : in this test case we set the parameters such that only
+% of the conditions is met and check that the output should be 0
+POINTS= [0 0; 1 0 ; -1 -1; 0 1; 1 1; -1 0 ; 0 -1; -1 1; 1 -1];
+NUMPOINTS=9;
+PARAMETERS.RADIUS1=2;
+PARAMETERS.RADIUS2=1;
+PARAMETERS.A_PTS=4;
+PARAMETERS.B_PTS =1;
+%Test Oracle: with these parameters the only set of 3 points is 
+%[ 0 0 ; -1 0; -1 1] and [1 0 ; 0 -1; 1 -1] 
+%both of them satisfy the second condition ( they are within a circle of a raduis 1)  
+%But none of them can satisfy the first condition ( they can be cantained
+%in a circle of raduis 2 . So the expected output is out=0
+
+out=lic13(POINTS,NUMPOINTS,PARAMETERS.A_PTS,PARAMETERS.B_PTS,PARAMETERS.RADIUS1,PARAMETERS.RADIUS2);
+assert(out==0)

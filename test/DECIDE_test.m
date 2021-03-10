@@ -247,3 +247,23 @@ PARAMETERS.G_PTS= 9 ;
 % the x of the point 10 1<3. so the expected output  should be 0
 out=lic11(POINTS,NUMPOINTS,PARAMETERS.G_PTS);
 assert(out==0)
+
+%% TEST 13.1 : LIC 13, check a set of 3 points that can not be contained within a circle of RADIUS1+ a set of 3 points that CAN be contained within a circle of RADIUS2
+
+% Test intension : check that the output is 1 when we can find (at least)
+% one set of points in the POINTS such that it can satisfy the first condition and one set of points that can satisfy the
+% second condition
+
+POINTS= [0 0; 1 0 ; -1 -1; 0 1; 1 1; -1 0 ; 0 -1; -1 1; 1 -1];
+NUMPOINTS=9;
+PARAMETERS.RADIUS1=0.5;
+PARAMETERS.RADIUS2=1;
+PARAMETERS.A_PTS=1;
+PARAMETERS.B_PTS =1;
+%Test Oracle : I set the parameters such that the first set of points 
+%(0,0)(-1,-1)(1,1) can not be contained in a circle of raduis 0.5 ( meeting first condition) 
+% but contained on a circle of radius 1 ( meeting condition 2). so the
+% expected output should be out=1
+
+out=lic13(POINTS,NUMPOINTS,PARAMETERS.A_PTS,PARAMETERS.B_PTS,PARAMETERS.RADIUS1,PARAMETERS.RADIUS2);
+assert(out==1)

@@ -9,7 +9,7 @@ LCM= randi(3,15); %% 1= ANDD , 2=ORR , 3=NOTUSED
 %% Intermediary variables
 CMV = zeros(15, 1);
 PUM = zeros(15, 15);
-FUV = zeros(15, 0);
+FUV = zeros(15, 1);
 %%
 
 
@@ -43,6 +43,13 @@ for i=1:15
                 PUM(i,j)=1;
             end
         end
+    end
+end
+
+%% Forming FUV based on PUM and PUV
+for i=1:15
+    if( PUV(i) == 0 || sum(PUM(i,:))==15) %% if all elements in row i of the PUM is true (1) then their sum should be 15
+     FUV(i)=1;
     end
 end
 

@@ -163,6 +163,20 @@ dist = PARAMETERS.DIST;
     end
 end
 
+%% LIC 7
+function out= lic7(POINTS,NUMPOINTS,K_PTS,LENGTH1)
+out=0;
+if (NUMPOINTS>=3)
+    for i=1:(NUMPOINTS-1-K_PTS)
+        distance = sqrt((POINTS(i,1)-POINTS(i+1+K_PTS,1))^2+(POINTS(i,2)-POINTS(i+1+K_PTS,2))^2);
+        if(distance > LENGTH1)
+            out=1;
+            break;
+        end
+    end
+end
+end 
+
 %% LIC 8
 function out = lic8(POINTS, NUMPOINTS, PARAMETERS);
 out = 0;

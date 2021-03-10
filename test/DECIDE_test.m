@@ -308,3 +308,26 @@ PARAMETERS.B_PTS =1;
 
 out=lic13(POINTS,NUMPOINTS,PARAMETERS.A_PTS,PARAMETERS.B_PTS,PARAMETERS.RADIUS1,PARAMETERS.RADIUS2);
 assert(out==0)
+
+%% Test 14: LIC 14 triangle spanned by three points separated by intervening points double area check
+
+% Test intention: check that the output is 1 if there exist 3 points
+% separated by E_PTS and F_PTS intervening points, respectively, which have a distance greater than
+% AREA1 and indepently if there exist 2 points satisfying the same
+% condition which instead have a distance less than LENGTH2
+
+POINTS = [1 0; -1 0; 1 0; 0 10; 0 -2; -1 0; 1 0];
+NUMPOINTS = 7;
+PARAMETERS.E_PTS = 2;
+PARAMETERS.F_PTS = 1;
+PARAMETERS.AREA1 = 8;
+PARAMETERS.AREA2 = 4;
+
+% Test oracle: The first, fourth and sixth points span an area of 10 square
+% units > 8 = AREA1 and hence satisfy the first area criterion (but no the second).
+% The second, fifth and seventh points span an area of 2 square units < 4 = AREA2 and thus 
+% satisfy the second area criterion (but not the first).
+% We thus expect LIC 12 to output true (1)
+
+out = lic14(POINTS, NUMPOINTS, PARAMETERS);
+assert(out == 1);

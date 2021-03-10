@@ -6,6 +6,8 @@ POINTS = zeros(NUMPOINTS,2);
 PUV = zeros(15,1);
 LCM= randi(3,15); %% 1= ANDD , 2=ORR , 3=NOTUSED
 
+%% OUTPUT 
+LAUNCH =0;
 
 %% Intermediary variables
 CMV = zeros(15, 1);
@@ -58,6 +60,9 @@ end
 if( sum(FUV) == 15) % all elements are True (1)
     LAUNCH = 1;
 end
+
+disp('LAUNCH:');
+disp(LAUNCH);
 
 %% LIC 0
 function out = lic0(POINTS, NUMPOINTS, PARAMETERS)

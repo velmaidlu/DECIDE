@@ -138,6 +138,20 @@ PARAMETERS.DIST = 2;
 out = lic6(POINTS, NUMPOINTS, PARAMETERS);
 assert(out == 1);
 
+%% TEST 7: LIC 7 check the distance between K_PTS apart points
+
+% Test intention : check that the output is 1 if the distance between 
+% 2 data points that are k_PTS apart from each other is greater than LENGTH1
+
+PARAMETERS.K_PTS = 5 ;  %% then there is 4 sets of points to check (1,7) (2,8) (3,9) (4,10) 
+PARAMETERS.LENGTH1 = 8 ; % the distance between points 3rd and 9th is greater than 8 : [-2 7] [1 -1] 
+
+% Test Oracle : with these inputs, there exists a set of 2 data points
+% seperated by K_PTS point that their distance is greater than LENGTH1. 
+% so the expected output of the lic7 is out=1;
+out = lic7(POINTS,NUMPOINTS,PARAMETERS.K_PTS,PARAMETERS.LENGTH1);
+assert(out == 1)
+
 %% Test 8: LIC 8 three data point separated by intervening points not contained within circle check
 
 % Test intention: check that the output is 1 if at least one of the three

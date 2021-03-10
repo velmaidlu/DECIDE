@@ -14,10 +14,9 @@ FUV = zeros(15, 0);
 
 
 CMV(1) = lic0(POINTS, NUMPOINTS, PARAMETERS);
-CMV(2)=lic1(POINTS, NUMPOINTS, PARAMETERS.RADIUS1);
-
+CMV(2) = lic1(POINTS, NUMPOINTS, PARAMETERS.RADIUS1);
 CMV(3) = lic2(POINTS, NUMPOINTS, PARAMETERS);
-
+CMV(4) = lic3(POINTS,NUMPOINTS,PARAMETERS.AREA1); 
 CMV(5) = lic4(POINTS, NUMPOINTS, PARAMETERS);
 
 
@@ -71,6 +70,25 @@ epsilon = PARAMETERS.EPSILON;
             end
         end
     end
+end
+
+%% LIC 3
+function out = lic3(POINTS, NUMPOINTS, AREA1) 
+out=0;
+ for i=1:(NUMPOINTS - 2)
+     % finding the side length of the triangle
+     length_12= sqrt((POINTS(i,1)-POINTS(i+1,1))^2 + (POINTS(i,2)-POINTS(i+1,2))^2 );     
+     length_13= sqrt((POINTS(i,1)-POINTS(i+2,1))^2 + (POINTS(i,2)-POINTS(i+2,2))^2 );
+     length_23= sqrt((POINTS(i+1,1)-POINTS(i+2,1))^2 + (POINTS(i+1,2)-POINTS(i+2,2))^2 );
+     %Heron's Formula for the area of a triangle 
+     p= (length_12+length_13+length_23)/2;
+     Area= sqrt(p*(p-length_12)*(p-length_13)*(p-length_23));
+     if (Area>AREA1)
+         out=1;
+         break;
+     end
+ end 
+
 end
 
 %% LIC 4

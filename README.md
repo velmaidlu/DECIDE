@@ -1,5 +1,6 @@
 About DECIDE:
 ---------------------------------
+---------------------------------
 
 DECIDE is a part of a hypothetical anti-ballistic missile system. 
 It is a script which determines whether an interceptor should be 
@@ -38,9 +39,8 @@ Output:
 LAUNCH      -   Either 0 (no launch) or 1 (launch)
 
 
----------------------------------
----------------------------------
 Testing:
+---------------------------------
 ---------------------------------
 In order to test the LICs and their respective cases, the test folder is required.
 It contains 15 .m files, of which 14 represent the LICs and the last represents
@@ -52,9 +52,8 @@ in the Matlab command window. The test cases listed will be run against a set of
 predetermined inputs and will then be compared with their expected values defined
 by the test oracle, the rationale of which is explained for each test case.
 
----------------------------------
----------------------------------
 Contributors:
+---------------------------------
 ---------------------------------
 Hedieh Khosravi:
 ---------------------------------

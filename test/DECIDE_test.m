@@ -203,6 +203,24 @@ PARAMETERS.D_PTS=2;
 out=lic9(POINTS,NUMPOINTS,PARAMETERS.C_PTS,PARAMETERS.D_PTS,PARAMETERS.EPSILON);
 assert(out == 0)
 
+%% Test 10: LIC 10 triangle spanned by three data point area check
+
+% Test intention: check that the output is 1 if at least one set of three
+% data points separated by E_PTS and F_PTS consecutive intervening points,
+% respectively, span an area greater than AREA1
+
+POINTS = [1 0; -3 0; 1 0; 0 5; 0 -4; -1 0];
+NUMPOINTS = 6;
+PARAMETERS.E_PTS = 2;
+PARAMETERS.F_PTS = 1;
+PARAMETERS.AREA1 = 4;
+
+% Test oracle: The first, fourth and sixth points (E_PTS and F_PTS apart) span a triange
+% with area 6 > 4 = AREA1, and so we expect LIC 10 to output true (1)
+
+out = lic10(POINTS, NUMPOINTS, PARAMETERS);
+assert(out == 1);
+
 %% TEST 11.1: LIC 11 X[j] - X[i] < 0 (where i=j-1) for non-consecutive points
 
 %Test intension: check that the output is 1 if there exists a set of 2 points 

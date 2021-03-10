@@ -53,6 +53,11 @@ for i=1:15
     end
 end
 
+%% Launch 
+if( sum(FUV) == 15) % all elements are True (1)
+    LAUNCH = 1;
+end
+
 %% LIC 0
 function out = lic0(POINTS, NUMPOINTS, PARAMETERS)
 out = 0;

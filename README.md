@@ -6,7 +6,7 @@ DECIDE is a part of a hypothetical anti-ballistic missile system.
 It is a script which determines whether an interceptor should be 
 launched based partly on the radar data points it receives as input.
 
-How to use DECIDE():
+How to use DECIDE.m:
 ---------------------------------
 
 Simply type DECIDE in the matlab command window. In order for the
@@ -25,7 +25,7 @@ PARAMETERS  -   A struc type object which contains relevant parameters
                 necessary to check various launch interceptor conditions (LICs).
 
 LCM         -   A 15x15 matrix which specifies the truth connections between
-                various pairs of LICs. An entry must be either 0 (OR), 1 (AND) or 
+                various pairs of LICs. An entry must be either 1 (AND), 2 (OR) ,or 
                 3 (NOTUSED). The position (i, j) connects the (i - 1)th and
                 (j - 1)th LIC.
 
@@ -43,7 +43,7 @@ Testing:
 ---------------------------------
 ---------------------------------
 In order to test the LICs and their respective cases, the test folder is required.
-It contains 15 .m files, of which 14 represent the LICs and the last represents
+It contains 16 .m files, of which 15 represent the LICs and the last represents
 the script containing the test cases. In order to automate the testing process, type
 
               runtests('DECIDE_test')

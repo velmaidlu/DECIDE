@@ -111,12 +111,16 @@ epsilon = PARAMETERS.EPSILON;
         if (norm(coordinate_difference_1) == 0) || (norm(coordinate_difference_2) == 0) % Checks if the first or third points coincides with the second
             
         else
-            angle = abs(acos(dot(coordinate_difference_1, coordinate_difference_2) / (norm(coordinate_difference_1) * norm(coordinate_difference_2)))); % 0 <= Angle <= pi, so only one condition is enough
+            angle = angle_between_vectors(coordinate_difference_1, coordinate_difference_2); % 0 <= Angle <= pi, so only one condition is enough
             if angle < (pi - epsilon)
                 out = 1;
             end
         end
     end
+end
+
+function angle = angle_between_vectors(vector_1, vector_2)
+    angle = abs(acos(dot(vector_1, vector_2) / (norm(vector_1) * norm(vector_2))));
 end
 
 %% LIC 3

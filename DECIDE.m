@@ -388,7 +388,7 @@ out1 = 0;
 out2 = 0;
 e_pts = PARAMETERS.E_PTS;
 f_pts = PARAMETERS.F_PTS;
-a1 = PARAMETERS.AREA1;
+area_1 = PARAMETERS.AREA1;
 a2 = PARAMETERS.AREA2;
     if NUMPOINTS < 5
         return
@@ -402,7 +402,7 @@ a2 = PARAMETERS.AREA2;
         v1(3) = 0;
         v2(3) = 0;
         area = norm(cross(v1, v2))/2;
-        if area > a1
+        if area > area_1
             out1 = 1;
         end
         if area < a2

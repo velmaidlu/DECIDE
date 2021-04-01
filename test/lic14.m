@@ -17,7 +17,7 @@ area_2 = PARAMETERS.AREA2;
         v2 = p3 - p1;
         v1(3) = 0;
         v2(3) = 0;
-        area = norm(cross(v1, v2))/2;
+        area = area_of_vectors(v1, v2);
         if area > area_1
             out1 = 1;
         end
@@ -26,4 +26,8 @@ area_2 = PARAMETERS.AREA2;
         end
     end
 out = out1*out2;
+end
+
+function area = area_of_vectors(vector_1, vector_2)
+    area = norm(cross(vector_1, vector_2))/2;
 end

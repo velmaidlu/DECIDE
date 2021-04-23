@@ -85,9 +85,12 @@ end
 function out = lic1(POINTS, NUMPOINTS, RADIUS1)
 out = 0;
         for i=1:(NUMPOINTS - 2)
-            length_12= sqrt((POINTS(i,1)-POINTS(i+1,1))^2 + (POINTS(i,2)-POINTS(i+1,2))^2 );     
-            length_13= sqrt((POINTS(i,1)-POINTS(i+2,1))^2 + (POINTS(i,2)-POINTS(i+2,2))^2 );
-            length_23= sqrt((POINTS(i+1,1)-POINTS(i+2,1))^2 + (POINTS(i+1,2)-POINTS(i+2,2))^2 );
+            point1=POINTS(i,:);
+            point2= POINTS(i+1,:);
+            point3= POINTS(i+2,:);
+            length_12= sqrt((point1(1)-point2(1))^2 + (point1(2)-point2(2))^2 );     
+            length_13= sqrt((point1(1)-point3(1))^2 + (point1(2)-point3(2))^2 );
+            length_23= sqrt((point2(1)-point3(1))^2 + (point2(2)-point3(2))^2 );
             
             % finding the circumradius of the traingle with sides length_12, length_13, and length_23
             % which is (for a,b,c) radius=(abc) / sqrt((a + b + c)(b + c - a)(c + a - b)(a + b - c))

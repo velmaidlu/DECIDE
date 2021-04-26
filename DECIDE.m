@@ -395,8 +395,7 @@ if(NUMPOINTS>=5)
 end
 end
 
-function radius = circumradius_finder(length1,length2,length3)% finding the circumradius of the traingle with sides length_12, length_13, and length_23
-                                                              %which is (for a,b,c) radius=(abc) / sqrt((a + b + c)(b + c - a)(c + a - b)(a + b - c))
+function radius = circumradius_finder(length1,length2,length3)% finding the circumradius of the traingle with sides length_12, length_13, and length_23                                                              %which is (for a,b,c) radius=(abc) / sqrt((a + b + c)(b + c - a)(c + a - b)(a + b - c))
 radius= (length1*length2*length3) / sqrt ((length1+length2+length3)*(length2+length3-length1)...
     *(length3+length1-length2)*(length1+length2-length3));
 end

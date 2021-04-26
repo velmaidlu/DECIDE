@@ -367,9 +367,9 @@ if(NUMPOINTS>=5)
         point1= POINTS(i,:);
         point2=POINTS(i+1+A_PTS,:);
         point3= POINTS(i+2+A_PTS+B_PTS,:);
-        length_12 = sqrt((point1(1)-point2(1))^2 + (point1(2)-point2(2))^2 );
-        length_13 = sqrt((point1(1)-point3(1))^2 + (point1(2)-point3(2))^2 );
-        length_23 = sqrt((point2(1)-point3(1))^2 + (point2(2)-point3(2))^2 );
+        length_12 = norm(point1-point2);
+        length_13 = norm(point1-point3);
+        length_23 = norm(point2-point3);
         radius1= circumradius_finder (length_12,length_13,length_23);
         if (radius_checker(radius1,RADIUS1))
                 out1=1;
@@ -381,9 +381,9 @@ if(NUMPOINTS>=5)
             point1= POINTS(i,:);
             point2=POINTS(i+1+A_PTS,:);
             point3= POINTS(i+2+A_PTS+B_PTS,:);
-            length_12 = sqrt((point1(1)-point2(1))^2 + (point1(2)-point2(2))^2 );
-            length_13 = sqrt((point1(1)-point3(1))^2 + (point1(2)-point3(2))^2 );
-            length_23 = sqrt((point2(1)-point3(1))^2 + (point2(2)-point3(2))^2 );
+            length_12 = norm(point1-point2);
+            length_13 = norm(point1-point3);
+            length_23 = norm(point2-point3);
             radius2= circumradius_finder (length_12,length_13,length_23);
             if (radius_checker(radius2,RADIUS2))
                 out=1;

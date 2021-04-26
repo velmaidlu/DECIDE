@@ -364,9 +364,12 @@ out=0;
 out1=0; % a flag for checking the first condition 
 if(NUMPOINTS>=5)
     for i=1 :(NUMPOINTS-2-A_PTS-B_PTS) %% checking first condition
-        length_12 = sqrt((POINTS(i,1)-POINTS(i+1+A_PTS,1))^2 + (POINTS(i,2)-POINTS(i+1+A_PTS,2))^2 );
-        length_13 = sqrt((POINTS(i,1)-POINTS(i+2+A_PTS+B_PTS,1))^2 + (POINTS(i,2)-POINTS(i+2+A_PTS+B_PTS,2))^2 );
-        length_23 = sqrt((POINTS(i+1+A_PTS,1)-POINTS(i+2+A_PTS+B_PTS,1))^2 + (POINTS(i+1+A_PTS,2)-POINTS(i+2+A_PTS+B_PTS,2))^2 );
+        point1= POINTS(i,:);
+        point2=POINTS(i+1+A_PTS,:);
+        point3= POINTS(i+2+A_PTS+B_PTS,:);
+        length_12 = sqrt((point1(1)-point2(1))^2 + (point1(2)-point2(2))^2 );
+        length_13 = sqrt((point1(1)-point3(1))^2 + (point1(2)-point3(2))^2 );
+        length_23 = sqrt((point2(1)-point3(1))^2 + (point2(2)-point3(2))^2 );
         radius1= circumradius_finder (length_12,length_13,length_23);
         if (radius_checker(radius1,RADIUS1))
                 out1=1;
@@ -375,9 +378,12 @@ if(NUMPOINTS>=5)
     end
     if ( out1 == 1)
         for i=1 :(NUMPOINTS-2-A_PTS-B_PTS) %% checking second condition
-            length_12 = sqrt((POINTS(i,1)-POINTS(i+1+A_PTS,1))^2 + (POINTS(i,2)-POINTS(i+1+A_PTS,2))^2 );
-            length_13 = sqrt((POINTS(i,1)-POINTS(i+2+A_PTS+B_PTS,1))^2 + (POINTS(i,2)-POINTS(i+2+A_PTS+B_PTS,2))^2 );
-            length_23 = sqrt((POINTS(i+1+A_PTS,1)-POINTS(i+2+A_PTS+B_PTS,1))^2 + (POINTS(i+1+A_PTS,2)-POINTS(i+2+A_PTS+B_PTS,2))^2 );
+            point1= POINTS(i,:);
+            point2=POINTS(i+1+A_PTS,:);
+            point3= POINTS(i+2+A_PTS+B_PTS,:);
+            length_12 = sqrt((point1(1)-point2(1))^2 + (point1(2)-point2(2))^2 );
+            length_13 = sqrt((point1(1)-point3(1))^2 + (point1(2)-point3(2))^2 );
+            length_23 = sqrt((point2(1)-point3(1))^2 + (point2(2)-point3(2))^2 );
             radius2= circumradius_finder (length_12,length_13,length_23);
             if (radius_checker(radius2,RADIUS2))
                 out=1;

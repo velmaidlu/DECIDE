@@ -277,7 +277,7 @@ if( NUMPOINTS>= 5)
         % finding the angle using dot product formula
         % V21.V23=|V21||V23|cos a
         if (norm(vector_21) ~= 0 && norm(vector_23) ~= 0) % P1 or P3 should not coincide with the vertex P2
-            angle=acos(dot(vector_21,vector_23)/(norm(vector_21)*norm(vector_23)));
+            angle=angle_finder(vector_21,vector_23);
             if((angle < (pi-EPSILON)) || ((angle > (pi+EPSILON)) ))
                 out=1;
                 break;
@@ -288,7 +288,9 @@ if( NUMPOINTS>= 5)
 end
 
 end
-
+function angle = angle_finder(vector1,vector2)
+angle=acos(dot(vector1,vector2)/(norm(vector1)*norm(vector2))); 
+end
 %% LIC 10
 function out = lic10(POINTS, NUMPOINTS, PARAMETERS);
 out = 0;

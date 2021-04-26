@@ -15,7 +15,7 @@ if( NUMPOINTS>= 5)
         
         % finding the angle using dot product formula
         % V21.V23=|V21||V23|cos a
-        if(angle_checker(vector_21,vector_23))
+        if(angle_checker(vector_21,vector_23,EPSILON) ==1)
             out=1;
             break;
         end      
@@ -26,7 +26,8 @@ end
 function angle = angle_finder(vector1,vector2)
 angle=acos(dot(vector1,vector2)/(norm(vector1)*norm(vector2))); 
 end
-function out=angle_checker(vector1,vector2)
+function out=angle_checker(vector1,vector2,EPSILON)
+out=0;
 if (norm(vector1) ~= 0 && norm(vector2) ~= 0) % P1 or P3 should not coincide with the vertex P2
     angle=angle_finder(vector1,vector2);
     if((angle < (pi-EPSILON)) || ((angle > (pi+EPSILON)) ))

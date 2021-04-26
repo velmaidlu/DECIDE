@@ -1,11 +1,10 @@
 
-%POINTS = zeros(NUMPOINTS,2);
-% %% Inputs 
-% PARAMETERS= struct('LENGTH1',1,'RADIUS1',1,'EPSILON',1,'AREA1',1,'Q_PTS',1,'QUADS',1,'DIST',1,'N_PTS',1,'K_PTS',1,'A_PTS',1,'B_PTS',1,'C_PTS',1,'D_PTS',1,'E_PTS',1,'F_PTS',1,'G_PTS',1,'LENGTH2',1,'RADIUS2',1,'AREA2',1);
-% NUMPOINTS= 100;
-% POINTS = zeros(NUMPOINTS,2);
-% PUV = zeros(15,1); False = 0 , True= 1
-% LCM= randi(3,15); %% 1= ANDD , 2=ORR , 3=NOTUSED
+%% Inputs 
+PARAMETERS= struct('LENGTH1',1,'RADIUS1',1,'EPSILON',1,'AREA1',1,'Q_PTS',1,'QUADS',1,'DIST',1,'N_PTS',1,'K_PTS',1,'A_PTS',1,'B_PTS',1,'C_PTS',1,'D_PTS',1,'E_PTS',1,'F_PTS',1,'G_PTS',1,'LENGTH2',1,'RADIUS2',1,'AREA2',1);
+NUMPOINTS= 100;
+POINTS = zeros(NUMPOINTS,2);
+PUV = zeros(15,1); False = 0 , True= 1
+LCM= randi(3,15); %% 1= ANDD , 2=ORR , 3=NOTUSED
 
 %% OUTPUT 
 LAUNCH =0;
@@ -277,7 +276,7 @@ if( NUMPOINTS>= 5)
         
         % finding the angle using dot product formula
         % V21.V23=|V21||V23|cos a
-        if(angle_checker(vector_21,vector_23)==1)
+        if(angle_checker(vector_21,vector_23,EPSILON)==1)
             out=1;
             break;
         end      
@@ -288,7 +287,7 @@ end
 function angle = angle_finder(vector1,vector2)
 angle=acos(dot(vector1,vector2)/(norm(vector1)*norm(vector2))); 
 end
-function out=angle_checker(vector1,vector2)
+function out=angle_checker(vector1,vector2,EPSILON)
 out=0;
 if (norm(vector1) ~= 0 && norm(vector2) ~= 0) % P1 or P3 should not coincide with the vertex P2
     angle=angle_finder(vector1,vector2);
@@ -373,7 +372,7 @@ if(NUMPOINTS>=5)
         length_13 = norm(point1-point3);
         length_23 = norm(point2-point3);
         radius1= circumradius_finder (length_12,length_13,length_23);
-        if (radius_checker(radius1,RADIUS1))
+        if (radius_checker(radius1,RADIUS1) ~= 0)
                 out1=1;
                 break;
         end
@@ -387,7 +386,7 @@ if(NUMPOINTS>=5)
             length_13 = norm(point1-point3);
             length_23 = norm(point2-point3);
             radius2= circumradius_finder (length_12,length_13,length_23);
-            if (radius_checker(radius2,RADIUS2))
+            if (radius_checker(radius2,RADIUS2)==1)
                 out=1;
                 break;
             end
@@ -397,7 +396,10 @@ end
 end
 
 function out= radius_checker(radius,radius_cnst)
-    out= radius<= radius_cnst;
+out=0;
+    if( radius<= radius_cnst)
+        out=1;
+    end
 end
 
 function radius = circumradius_finder(length1,length2,length3)% finding the circumradius of the traingle with sides length_12, length_13, and length_23

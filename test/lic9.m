@@ -10,20 +10,52 @@ out=0;
 if( NUMPOINTS>= 5) 
     for i= 1: (NUMPOINTS-2-C_PTS-D_PTS)
         % finding 2 vector corresponding to the 2nd point being vertex
-        V21=[POINTS(i+1+C_PTS,1)-POINTS(i,1) ; POINTS(i+1+C_PTS,2)-POINTS(i,2)];
-        V23=[POINTS(i+2+C_PTS+D_PTS,1)-POINTS(i+1+C_PTS,1); POINTS(i+2+C_PTS+D_PTS,2)-POINTS(i+1+C_PTS,2)];
+        vector_21=[POINTS(i+1+C_PTS,1)-POINTS(i,1) ; POINTS(i+1+C_PTS,2)-POINTS(i,2)];
+        vector_23=[POINTS(i+2+C_PTS+D_PTS,1)-POINTS(i+1+C_PTS,1); POINTS(i+2+C_PTS+D_PTS,2)-POINTS(i+1+C_PTS,2)];
         
         % finding the angle using dot product formula
         % V21.V23=|V21||V23|cos a
-        if (norm(V21) ~= 0 && norm(V23) ~= 0) % P1 or P3 should not coincide with the vertex P2
-            angle=acos(dot(V21,V23)/(norm(V21)*norm(V23)));
-            if((angle < (pi-EPSILON)) || ((angle > (pi+EPSILON)) ))
-                out=1;
-                break;
-            end
-            
-        end       
+        if(angle_checker(vector_21,vector_23))
+            out=1;
+            break;
+        end      
     end
 end
 
+end
+function angle = angle_finder(vector1,vector2)
+angle=acos(dot(vector1,vector2)/(norm(vector1)*norm(vector2))); 
+end
+function out=angle_checker(vector1,vector2)
+if (norm(vector1) ~= 0 && norm(vector2) ~= 0) % P1 or P3 should not coincide with the vertex P2
+    angle=angle_finder(vector1,vector2);
+    if((angle < (pi-EPSILON)) || ((angle > (pi+EPSILON)) ))
+        out=1;
+    end
+    
+end
+end
+
+%% LIC 10
+function out = lic10(POINTS, NUMPOINTS, PARAMETERS);
+out = 0;
+e_pts = PARAMETERS.E_PTS;
+f_pts = PARAMETERS.F_PTS;
+a1 = PARAMETERS.AREA1;
+    if NUMPOINTS < 5
+        return
+    end
+    for i = 1:(NUMPOINTS - (e_pts + f_pts + 2))
+        p1 = POINTS(i, :);
+        p2 = POINTS(i + e_pts + 1, :);
+        p3 = POINTS(i + e_pts + f_pts + 2);
+        v1 = p2 - p1;
+        v2 = p3 - p1;
+        v1(3) = 0;
+        v2(3) = 0;
+        area = norm(cross(v1, v2))/2;
+        if area > a1
+            out = 1;
+        end
+    end
 end

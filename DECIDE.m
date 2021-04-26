@@ -378,7 +378,7 @@ if(NUMPOINTS>=5)
         end
     end
     if ( out1 == 1)
-        for i=1 :(NUMPOINTS-2-A_PTS-B_PTS) %% checking first condition
+        for i=1 :(NUMPOINTS-2-A_PTS-B_PTS) %% checking second condition
             length_12 = sqrt((POINTS(i,1)-POINTS(i+1+A_PTS,1))^2 + (POINTS(i,2)-POINTS(i+1+A_PTS,2))^2 );
             length_13 = sqrt((POINTS(i,1)-POINTS(i+2+A_PTS+B_PTS,1))^2 + (POINTS(i,2)-POINTS(i+2+A_PTS+B_PTS,2))^2 );
             length_23 = sqrt((POINTS(i+1+A_PTS,1)-POINTS(i+2+A_PTS+B_PTS,1))^2 + (POINTS(i+1+A_PTS,2)-POINTS(i+2+A_PTS+B_PTS,2))^2 );

@@ -10,34 +10,42 @@ out=0;
 out1=0; % a flag for checking the first condition 
 if(NUMPOINTS>=5)
     for i=1 :(NUMPOINTS-2-A_PTS-B_PTS) %% checking first condition
-        length_12 = sqrt((POINTS(i,1)-POINTS(i+1+A_PTS,1))^2 + (POINTS(i,2)-POINTS(i+1+A_PTS,2))^2 );
-        length_13 = sqrt((POINTS(i,1)-POINTS(i+2+A_PTS+B_PTS,1))^2 + (POINTS(i,2)-POINTS(i+2+A_PTS+B_PTS,2))^2 );
-        length_23 = sqrt((POINTS(i+1+A_PTS,1)-POINTS(i+2+A_PTS+B_PTS,1))^2 + (POINTS(i+1+A_PTS,2)-POINTS(i+2+A_PTS+B_PTS,2))^2 );
-        
-        % finding the circumradius of the traingle with sides length_12, length_13, and length_23
-        % which is (for a,b,c) radius=(abc) / sqrt((a + b + c)(b + c - a)(c + a - b)(a + b - c))
-        radius1= (length_12*length_13*length_23) / sqrt ((length_12+length_13+length_23)*(length_13+length_23-length_12)...
-                 *(length_23+length_12-length_13)*(length_12+length_13-length_23));
-        if (radius1 > RADIUS1)
+        point1= POINTS(i,:);
+        point2=POINTS(i+1+A_PTS,:);
+        point3= POINTS(i+2+A_PTS+B_PTS,:);
+        length_12 = norm(point1-point2);
+        length_13 = norm(point1-point3);
+        length_23 = norm(point2-point3);
+        radius1= circumradius_finder (length_12,length_13,length_23);
+        if (radius_checker(radius1,RADIUS1))
                 out1=1;
                 break;
         end
     end
     if ( out1 == 1)
-        for i=1 :(NUMPOINTS-2-A_PTS-B_PTS) %% checking first condition
-            length_12 = sqrt((POINTS(i,1)-POINTS(i+1+A_PTS,1))^2 + (POINTS(i,2)-POINTS(i+1+A_PTS,2))^2 );
-            length_13 = sqrt((POINTS(i,1)-POINTS(i+2+B_PTS,1))^2 + (POINTS(i,2)-POINTS(i+2+B_PTS,2))^2 );
-            length_23 = sqrt((POINTS(i+1+A_PTS,1)-POINTS(i+2+B_PTS,1))^2 + (POINTS(i+1+A_PTS,2)-POINTS(i+2+B_PTS,2))^2 );
-            
-            % finding the circumradius of the traingle with sides length_12, length_13, and length_23
-            % which is (for a,b,c) radius=(abc) / sqrt((a + b + c)(b + c - a)(c + a - b)(a + b - c))
-            radius2= (length_12*length_13*length_23) / sqrt ((length_12+length_13+length_23)*(length_13+length_23-length_12)...
-                *(length_23+length_12-length_13)*(length_12+length_13-length_23));
-            if (radius2 <= RADIUS2)
+        for i=1 :(NUMPOINTS-2-A_PTS-B_PTS) %% checking second condition
+            point1= POINTS(i,:);
+            point2=POINTS(i+1+A_PTS,:);
+            point3= POINTS(i+2+A_PTS+B_PTS,:);
+            length_12 = norm(point1-point2);
+            length_13 = norm(point1-point3);
+            length_23 = norm(point2-point3);
+            radius2= circumradius_finder (length_12,length_13,length_23);
+            if (radius_checker(radius2,RADIUS2))
                 out=1;
                 break;
             end
         end
     end    
 end
+end
+
+function out= radius_checker(radius,radius_cnst)
+    out= radius<= radius_cnst;
+end
+
+function radius = circumradius_finder(length1,length2,length3)% finding the circumradius of the traingle with sides length_12, length_13, and length_23
+                                                              %which is (for a,b,c) radius=(abc) / sqrt((a + b + c)(b + c - a)(c + a - b)(a + b - c))
+radius= (length1*length2*length3) / sqrt ((length1+length2+length3)*(length2+length3-length1)...
+    *(length3+length1-length2)*(length1+length2-length3));
 end
